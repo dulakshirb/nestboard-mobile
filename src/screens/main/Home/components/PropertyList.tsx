@@ -46,7 +46,7 @@ const PropertyList = () => {
                   <View>
                     <Text style={style.propType}>{dt.item.type}</Text>
                     <Text style={style.propTitle}>{dt.item.title}</Text>
-                    <Text style={style.propLocation}>{dt.item.location}</Text>
+                    <Text style={style.propLocation}>{dt.item.city}</Text>
                   </View>
                   <View style={{ alignItems: 'flex-end' }}>
                     <Text style={style.propPrice}>{dt.item.price}</Text>

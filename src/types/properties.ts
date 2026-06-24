@@ -4,6 +4,7 @@ export type PropertyItem = {
   id: string;
   title: string;
   location: string;
+  city: string;
   type: string;
   price: string;
   rating: number;
