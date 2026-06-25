@@ -17,6 +17,7 @@ import { useDispatch } from "react-redux";
 import { saveToken } from "../../../store/authSlice";
 import { persistLogin } from "../../../util/localStorage";
 import { useNavigation } from "@react-navigation/native";
+import GoogleIcon from "../../../components/icons/GoogleIcon";
 
 export default function LoginScreen() {
   const [email, setEmail] = useState("");
@@ -110,7 +111,7 @@ export default function LoginScreen() {
         </View>
 
         <RegularButton
-          Icon={undefined}
+          Icon={<GoogleIcon width={20} height={20} />}
           variant="outline"
           text={"Join with Google"}
           onPress={handleContinue}
