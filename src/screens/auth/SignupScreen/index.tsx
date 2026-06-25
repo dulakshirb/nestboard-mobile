@@ -18,6 +18,7 @@ import { saveToken } from "../../../store/authSlice";
 import { persistLogin } from "../../../util/localStorage";
 import { useNavigation } from "@react-navigation/native";
 import GoogleIcon from "../../../components/icons/GoogleIcon";
+import PasswordStrengthBar from "./components/PasswordStrengthBar";
 
 export default function SignupScreen() {
   const [displayName, setDisplayName] = useState("");
@@ -107,8 +108,9 @@ export default function SignupScreen() {
             placeholder={"Enter your password"}
           />
         </FormComponentWrapper>
+        <PasswordStrengthBar password={password} />
 
-        <Text style={styles.textHint}>Password must be at least 8 characters</Text>
+        {/* <Text style={styles.textHint}>Password must be at least 8 characters</Text> */}
         {error && <Text style={styles.error}>{error}</Text>}
 
         <RegularButton
