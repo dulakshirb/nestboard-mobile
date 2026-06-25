@@ -11,3 +11,7 @@ export const checkStatus = async () => {
   const v = await storage.getItem("refreshToken");
   return v;
 }
+
+export const removeRefreshToken = async () => {
+  storage.removeItem("refreshToken");
+}

@@ -50,7 +50,7 @@ export default function SignupScreen() {
         password,
         displayName
       });
-      console.log("data ", data)
+      // console.log("data ", data)
       // Save the tokens inside the global state using redux
       dispatch(saveToken({
         accessToken: data.accessToken,

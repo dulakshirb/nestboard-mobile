@@ -3,12 +3,24 @@ import React from 'react'
 import { Bell } from 'lucide-react-native'
 import { Colors } from '../../../../constant/colors'
 import RoundButton from '../../../../components/ui/RoundButton'
+import { useDispatch } from 'react-redux'
+import { logout } from '../../../../store/authSlice'
+import { removeRefreshToken } from '../../../../util/localStorage'
 
 const Header = () => {
+
+  const dispatch = useDispatch()
+
   return (
     <View style={style.headerWrapper}>
       <Text style={style.nest}>Nest<Text style={style.board}>Board</Text></Text>
-      <RoundButton Icon={<Bell color={Colors.SECONDARY} size={20} />} orangeIndicator />
+      <RoundButton
+        Icon={<Bell color={Colors.SECONDARY} size={20} />}
+        orangeIndicator
+        onPress={() => {
+          dispatch(logout())
+          removeRefreshToken()
+        }} />
     </View>
   )
 }

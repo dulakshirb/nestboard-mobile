@@ -13,7 +13,7 @@ const PropertyList = () => {
   useEffect(() => {
     PropertyAPI.getAllProperties().then((data) => {
       setProperties(data)
-      console.log("Property Data: ", data)
+      // console.log("Property Data: ", data)
     }).catch(() => { })
   }, [])
 

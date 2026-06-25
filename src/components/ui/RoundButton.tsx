@@ -1,16 +1,17 @@
-import { View, TouchableOpacity, StyleSheet } from 'react-native'
+import { View, TouchableOpacity, StyleSheet, GestureResponderEvent } from 'react-native'
 import React from 'react'
 import { Bell } from 'lucide-react-native'
 import { Colors } from '../../constant/colors'
 
 type Props = {
   Icon: any,
-  orangeIndicator?: boolean
+  orangeIndicator?: boolean,
+  onPress?: ((event: GestureResponderEvent) => void) | undefined
 }
 
-const RoundButton = ({ Icon, orangeIndicator }: Props) => {
+const RoundButton = ({ Icon, orangeIndicator, onPress }: Props) => {
   return (
-    <TouchableOpacity style={style.buttonWrapper}>
+    <TouchableOpacity onPress={onPress} style={style.buttonWrapper}>
       {orangeIndicator && <View style={style.notificationIndicator}></View>}
       {Icon}
       {/* <Bell color={Colors.SECONDARY} size={20} /> */}
