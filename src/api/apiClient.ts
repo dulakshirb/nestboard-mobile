@@ -1,7 +1,7 @@
 import axios from "axios";
 import { store } from "../store/store";
-import { saveToken } from "../store/authSlice";
-import { persistLogin } from "../util/localStorage";
+import { logout, saveToken } from "../store/authSlice";
+import { persistLogin, removeRefreshToken } from "../util/localStorage";
 
 export const apiClient = axios.create({
   baseURL: "http://10.0.2.2:3001/api/",
@@ -28,10 +28,10 @@ apiClient.interceptors.response.use(
     if (error.response?.status === 401 && !original._retry) {
       original._retry = true;
       const { refreshToken } = store.getState().auth;
-      // if (!refreshToken) {
-      //   store.dispatch(logout())
-      //   return Promise.reject(error);
-      // }
+      if (!refreshToken) {
+        store.dispatch(logout())
+        return Promise.reject(error);
+      }
       try {
         const { data } = await axios.post(
           `${apiClient.defaults.baseURL}auth/refresh`,
@@ -45,8 +45,8 @@ apiClient.interceptors.response.use(
         original.headers.Authorization = `Bearer ${data.accessToken}`;
         return apiClient(original);
       } catch (refreshErr) {
-        // store.dispatch(logout());
-        // removeRefreshToken();
+        store.dispatch(logout());
+        removeRefreshToken();
         return Promise.reject(refreshErr);
       }
     }
