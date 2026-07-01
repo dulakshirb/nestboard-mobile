@@ -1,12 +1,9 @@
-import { View, Text, FlatList, ImageBackground, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, FlatList, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import LinearGradient from 'react-native-linear-gradient'
-import { Star } from 'lucide-react-native'
-import { Colors } from '../../../../constant/colors'
-import { PropertyAPI } from '../../../../api/properties'
 import { PropertyItem as PItem } from '../../../../types/properties'
-import { useNavigation } from '@react-navigation/native'
 import PropertyItem from './PropertyItem'
+import PropertyItemSkeleton from './PropertyItemSkeleton'
+import { PropertyAPI } from '../../../../api/properties'
 
 const PropertyList = () => {
 
@@ -27,8 +24,16 @@ const PropertyList = () => {
         showsVerticalScrollIndicator={false}
         data={properties}
         keyExtractor={(data) => data.id}
-        renderItem={(dt) => <PropertyItem dt={dt} />
-        }
+        renderItem={(dt) => <PropertyItem dt={dt} />}
+        ListEmptyComponent={() => {
+          return (
+            <>
+              <PropertyItemSkeleton />
+              <View style={{ height: 16 }}></View>
+              <PropertyItemSkeleton />
+            </>
+          )
+        }}
       />
     </View >
   )

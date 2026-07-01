@@ -1,7 +1,5 @@
 import React from 'react'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import Home from '../screens/main/Home'
-import Header from '../screens/main/Home/components/Header'
 import TabScreens from './TabNavigation/TabScreens'
 import PropertyDetails from '../screens/main/PropertyDetails'
 
