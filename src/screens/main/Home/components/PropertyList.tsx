@@ -1,9 +1,9 @@
 import { View, FlatList, StyleSheet } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { PropertyItem as PItem } from '../../../../types/properties'
-import PropertyItem from './PropertyItem'
-import PropertyItemSkeleton from './PropertyItemSkeleton'
-import { PropertyAPI } from '../../../../api/properties'
+import { PropertyItem as PItem } from '../../../../types/properties';
+import { PropertyAPI } from '../../../../api/properties';
+import PropertyItemSkeleton from './PropertyItemSkeleton';
+import PropertyCard from './PropertyCard';
 
 const PropertyList = () => {
 
@@ -12,19 +12,19 @@ const PropertyList = () => {
   useEffect(() => {
     PropertyAPI.getAllProperties().then((data) => {
       setProperties(data)
-      // console.log("Property Data: ", data)
+      console.log(data)
     }).catch(() => { })
   }, [])
 
   return (
     <View style={style.container}>
       <FlatList
-        style={style.flatList}
-        ItemSeparatorComponent={() => <View style={{ height: 16 }}></View>}
         showsVerticalScrollIndicator={false}
+        style={style.container}
+        ItemSeparatorComponent={() => <View style={{ height: 16 }}></View>}
         data={properties}
         keyExtractor={(data) => data.id}
-        renderItem={(dt) => <PropertyItem dt={dt} />}
+        renderItem={(dt) => <PropertyCard dt={dt} />}
         ListEmptyComponent={() => {
           return (
             <>
@@ -35,7 +35,7 @@ const PropertyList = () => {
           )
         }}
       />
-    </View >
+    </View>
   )
 }
 

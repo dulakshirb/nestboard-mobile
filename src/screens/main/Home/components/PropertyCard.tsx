@@ -11,7 +11,7 @@ type Props = {
   dt: ListRenderItemInfo<PItem>
 }
 
-const PropertyItem = ({ dt }: Props) => {
+const PropertyCard = ({ dt }: Props) => {
 
   const nav: any = useNavigation();
 
@@ -52,4 +52,4 @@ const PropertyItem = ({ dt }: Props) => {
   )
 }
 
-export default PropertyItem
+export default PropertyCard
